@@ -1,12 +1,16 @@
 import logo from './logo.svg';
 import './App.css';
-
 import React, { Component } from 'react'
+import News from './components/News';
+import NavBar from './components/NavBar';
 
 export default class App extends Component {
   render() {
     return (
-      <div>First class based component</div>
+      <div>
+        <NavBar />
+        <News />
+      </div>
     )
   }
 }
