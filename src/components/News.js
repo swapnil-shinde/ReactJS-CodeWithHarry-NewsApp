@@ -16,8 +16,8 @@ export class News extends Component {
     pageSize: PropTypes.number
   }
 
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.state = {
       articles : [],
       page : 1,
@@ -28,7 +28,13 @@ export class News extends Component {
 
   async componentDidMount(){
     this.updateNews()
+    document.title = `NewsApp - ${this.capitalizeFirstLetter(this.props.category)}`
+    
   }
+
+  capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
 
   handlePrevClick = async () => {
     this.setState({ page: this.state.page - 1 })
@@ -56,7 +62,7 @@ export class News extends Component {
   render() {
     return (
       <div className='container my-3'>
-        <h1 className="text-center" style={{margin: '30px 0px'}}>Daily News - Top Headlines</h1>
+        <h1 className="text-center" style={{margin: '30px 0px'}}>Daily News - Top {this.capitalizeFirstLetter(this.props.category)} Headlines</h1>
         {this.state.loading && <Spinner />}
         <div className="row">
           {
